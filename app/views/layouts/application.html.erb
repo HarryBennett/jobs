@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DevJobs</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <header id="fh5co-header" role="banner">
+      <%= render 'layouts/messages' %>
+      <%= render 'layouts/navigation' %>
+    </header>
+
+  <div class="container main" id="main" >
+
+    <%= yield %>
+  </div>
+  <footer id="fh5co-footer" role="contentinfo">
+
+		<div class="container">
+
+			<div class="col-md-12 fh5co-copyright text-center">
+        <p>&copy; 2016 All Rights Reserved. Made with <%=fa_icon "heart", style: "color:red;" %> by <%= link_to "Harry Bennett", "http://www.adrianprieto.com/", target: '_blank' %></p>
+				<p><%= link_to (fa_icon 'twitter 2x').to_s, 'http://www.twitter.com/adrianprieto00', target: '_blank' %></a>
+           <%= link_to (fa_icon 'github 2x').to_s, 'https://github.com/aprietof', target: '_blank' %>
+           <%= link_to (fa_icon 'linkedin 2x').to_s, 'https://www.linkedin.com/in/adrianprieto', target: '_blank' %>
+           <%= link_to (fa_icon 'youtube 2x').to_s, 'https://www.youtube.com/user/adrianprieto1981', target: '_blank' %></p>
+			</div>
+
+		</div>
+	</footer>
+
+  </body>
+</html>

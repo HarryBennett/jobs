@@ -1,0 +1,54 @@
+<div class="row">
+
+  <div class="col-sm-9">
+    <div class="well">
+      <h1><%= @job.title %></h1>
+      <small>Posted: <%= @job.posting_date %></small>
+      <h4><span class="label label-default"><%= @job.category.name %></span></h4>
+      <h3>Company:</h3>
+      <p><%= fa_icon "industry" %> <%= @job.company_name.capitalize %> | <%= fa_icon "map-marker" %> <%= @job.location %></p>
+      <h4>Description:</h4>
+      <p><%= @job.description %></p>
+      <h5>Company Url: <%= link_to @job.url, "http://#{@job.url}" %></h5>
+
+
+      <div class="row">
+        <div class="col-sm-6">
+          <h4>Skills Required:</h4>
+          <% @job.skills.each do |skill| %>
+            <small><%= skill.name %> | </small>
+          <% end %>
+        </div>
+      </div>
+
+        <div class="row">
+        <% if current_user.user? %>
+          <div class="col-sm-2 pull-right">
+            <%= link_to "Apply", new_job_application_path(job_id: @job.id, user_id: current_user), class: "btn btn-primary btn-outline btn-md" %>
+          </div>
+        <% elsif policy(@job).update? %>
+          <div class="col-sm-2 pull-right">
+            <%= button_to "Edit", edit_job_path, method: "get", class: "btn btn-warning btn-outline btn-md" %>
+          </div>
+          <div class="col-sm-2 pull-right">
+            <%= button_to "Delete", job_path, method: "delete", class: "btn btn-danger btn-outline btn-md" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= button_to "Back", jobs_path, method: "get", class: "btn btn-primary btn-outline btn-sm" %>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">Latest Jobs</div>
+        <div class="panel-body">
+          <% @jobs.each do |job| %>
+            <small><%= job.location%></small> | <small><%= job.posting_date %></small>
+            <h5><%= link_to job.title, job_path(job) %></h5>
+          <% end %>
+        </div>
+    </div>
+  </div>
+
+</div>
